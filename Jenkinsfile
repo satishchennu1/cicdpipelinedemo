@@ -6,8 +6,9 @@ node ("maven"){
         stage ('checkout code from Git') {
         	git url: "https://github.com/satishchennu1/cicdpipelinedemo.git", branch: "master"
         }
-        stage ('Build') {
+        stage ('Build WAR') {
         	sh "echo 'shell scripts to build project...'"
+                sh "mvn clean package -Popenshift" 
         }
         stage ('Tests') {
 	        parallel 'static': {
